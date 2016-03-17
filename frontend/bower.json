@@ -1,0 +1,14 @@
+{
+  "name": "django-rest-angular-seed",
+  "description": "Seed of a web application with django-based backend",
+  "version": "0.0.1",
+  "homepage": "https://github.com/TomaszGabrysiak/django-rest-angular-seed",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "angular": "1.4.5",
+    "bootstrap": "3.3.6",
+    "angular-ui-router": "0.2.18",
+    "font-awesome": "4.5.0"
+  }
+}

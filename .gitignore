@@ -1,2 +1,6 @@
 !.gitkeep
 *.pyc
+.idea/
+
+frontend/app/bower_components/
+frontend/node_modules/
