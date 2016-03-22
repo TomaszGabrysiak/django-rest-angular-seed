@@ -12,18 +12,17 @@
 
     <script src="/app.js"></script>
 </head>
-<body>
-<div class="container">
+<body ng-app="myRestApp">
+<div class="container" ng-controller="myRestAppCtrl">
     <div class="row">
         <div class="col-xs-12">
-            <a class="btn btn-default" href="">Books</a>
-            <a class="btn btn-default" href="">Authors</a>
+            <h1>Authors</h1>
             <ul>
-                <li>Book 1</li>
-                <li>Book 1</li>
-                <li>Book 1</li>
-                <li>Book 1</li>
-                <li>Book 1</li>
+                <li ng-repeat="author in authors">{{ author }}</li>
+            </ul>
+            <h1>Books</h1>
+            <ul>
+                <li ng-repeat="book in books">{{ book }}</li>
             </ul>
         </div>
     </div>
