@@ -10,6 +10,25 @@ app.controller("MyRestAppCtrl", ['$scope', 'myRestAppApiService', function ($sco
   $scope.books = ["Loading..."];
   $scope.authors = ["Loading"];
 
+  $scope.newAuthor = {
+    first_name: '',
+    last_name: '',
+    description: ''
+  };
+
+  $scope.addAuthor = function () {
+    myRestAppApiService.addAuthor($scope.newAuthor)
+      .success(function (response, status) {
+        $scope.authors.push($scope.newAuthor);
+        $scope.newAuthor = {
+          first_name: '',
+          last_name: '',
+          description: ''
+        };
+      });
+
+  };
+
   myRestAppApiService.getBooks()
     .success(function (response, status) {
       $scope.books = [].concat(response);
@@ -24,7 +43,8 @@ app.controller("MyRestAppCtrl", ['$scope', 'myRestAppApiService', function ($sco
 app.service('myRestAppApiService', ['$http', function ($http) {
   var apiUrlMapper = {
     getBooks: "http://localhost:8000/books/",
-    getAuthors: "http://localhost:8000/authors/"
+    getAuthors: "http://localhost:8000/authors/",
+    addAuthor: "http://localhost:8000/authors/"
   };
 
   var books = [];
@@ -36,6 +56,9 @@ app.service('myRestAppApiService', ['$http', function ($http) {
     },
     getAuthors: function () {
       return $http.get(apiUrlMapper.getAuthors);
+    },
+    addAuthor: function (author) {
+      return $http.post(apiUrlMapper.addAuthor, author);
     }
   };
 }]);
