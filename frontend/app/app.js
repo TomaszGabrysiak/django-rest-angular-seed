@@ -10,4 +10,22 @@ app.controller("MyRestAppCtrl", function($scope) {
   $scope.authors = ["Author 1", "Author 2", "Author 3", "Author 4"];
 });
 
+app.service('myRestAppApiService', ['$http', function ($http) {
+  var apiUrlMapper = {
+    getBooks: "/api/v1/books/",
+    getAuthors: "/api/v1/authors/"
+  };
+
+  var books = [];
+  var authors = [];
+
+  return {
+    getBooks: function () {
+      return $http.get(apiUrlMapper.getBooks);
+    },
+    getAuthors: function () {
+      return $http.get(apiUrlMapper.getAuthors);
+    }
+  };
+}]);
 
