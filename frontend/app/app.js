@@ -16,6 +16,27 @@ app.controller("MyRestAppCtrl", ['$scope', 'myRestAppApiService', function ($sco
     description: ''
   };
 
+  $scope.loginData = {
+    username: 'testuser',
+    password: 'testpassword'
+  };
+
+  $scope.doLogin = function () {
+    console.log('do login');
+    myRestAppApiService.login($scope.loginData)
+      .success(function (response, status) {
+        console.log('success');
+      });
+  };
+
+  $scope.doLogout = function () {
+    console.log('do logout');
+    myRestAppApiService.logout()
+      .success(function (response, status) {
+        console.log('success');
+      });
+  };
+
   $scope.addAuthor = function () {
     myRestAppApiService.addAuthor($scope.newAuthor)
       .success(function (response, status) {
@@ -26,7 +47,6 @@ app.controller("MyRestAppCtrl", ['$scope', 'myRestAppApiService', function ($sco
           description: ''
         };
       });
-
   };
 
   myRestAppApiService.getBooks()
@@ -42,6 +62,8 @@ app.controller("MyRestAppCtrl", ['$scope', 'myRestAppApiService', function ($sco
 
 app.service('myRestAppApiService', ['$http', function ($http) {
   var apiUrlMapper = {
+    login: "http://localhost:8000/api-auth/login/",
+    logout: "http://localhost:8000/api-auth/logout/",
     getBooks: "http://localhost:8000/api/books/",
     getAuthors: "http://localhost:8000/api/authors/",
     addAuthor: "http://localhost:8000/api/authors/"
@@ -51,6 +73,12 @@ app.service('myRestAppApiService', ['$http', function ($http) {
   var authors = [];
 
   return {
+    login: function (credentials) {
+      return $http.post(apiUrlMapper.login, credentials);
+    },
+    logout: function () {
+      return $http.get(apiUrlMapper.logout);
+    },
     getBooks: function () {
       return $http.get(apiUrlMapper.getBooks);
     },

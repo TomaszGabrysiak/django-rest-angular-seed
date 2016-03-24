@@ -16,11 +16,31 @@
 <div class="container" ng-controller="MyRestAppCtrl">
   <div class="row">
     <div class="col-xs-12">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Authentication</h1>
+        </div>
+        <div class="col-xs-3">
+          <input ng-model="loginData.username" type="text" class="form-control" placeholder="username">
+        </div>
+        <div class="col-xs-3">
+          <input ng-model="loginData.password" type="text" class="form-control" placeholder="password">
+        </div>
+        <div class="col-xs-2">
+          <button ng-click="doLogin()" class="btn btn-block btn-success" type="submit">Login</button>
+        </div>
+        <div class="col-xs-2">
+          <button ng-click="doLogout()" class="btn btn-block btn-danger" type="submit">Logout</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12">
       <h1>Authors</h1>
       <ul>
         <li ng-repeat="author in authors">{{ author.first_name }} {{ author.last_name }}</li>
       </ul>
-
+    </div>
+    <div class="col-xs-12">
       <div class="row">
         <div class="col-xs-3">
           <input ng-model="newAuthor.first_name" type="text" class="form-control" placeholder="First name">
@@ -35,7 +55,8 @@
           <button ng-click="addAuthor()" class="btn btn-default" type="submit">Save</button>
         </div>
       </div>
-
+    </div>
+    <div class="col-xs-12">
       <h1>Books</h1>
       <ul>
         <li ng-repeat="book in books">{{ book }}</li>
