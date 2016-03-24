@@ -42,9 +42,9 @@ app.controller("MyRestAppCtrl", ['$scope', 'myRestAppApiService', function ($sco
 
 app.service('myRestAppApiService', ['$http', function ($http) {
   var apiUrlMapper = {
-    getBooks: "http://localhost:8000/books/",
-    getAuthors: "http://localhost:8000/authors/",
-    addAuthor: "http://localhost:8000/authors/"
+    getBooks: "http://localhost:8000/api/books/",
+    getAuthors: "http://localhost:8000/api/authors/",
+    addAuthor: "http://localhost:8000/api/authors/"
   };
 
   var books = [];
