@@ -9,7 +9,7 @@ gulp.task('webserver', function () {
   gulp.src('./app/')
     .pipe(webserver({
       host: 'localhost',
-      port: '8000',
+      port: '8080',
       livereload: true,
       directoryListing: false
     }));

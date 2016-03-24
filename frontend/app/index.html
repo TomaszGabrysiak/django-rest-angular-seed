@@ -1,32 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Rest example app</title>
+  <meta charset="UTF-8">
+  <title>Rest example app</title>
 
-    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
-    <script src="/bower_components/angular/angular.min.js"></script>
-    <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="/bower_components/angular/angular.min.js"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 
-    <script src="/app.js"></script>
+  <script src="/app.js"></script>
 </head>
-<body>
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <a class="btn btn-default" href="">Books</a>
-            <a class="btn btn-default" href="">Authors</a>
-            <ul>
-                <li>Book 1</li>
-                <li>Book 1</li>
-                <li>Book 1</li>
-                <li>Book 1</li>
-                <li>Book 1</li>
-            </ul>
+<body ng-app="myRestApp">
+<div class="container" ng-controller="MyRestAppCtrl">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Authors</h1>
+      <ul>
+        <li ng-repeat="author in authors">{{ author.first_name }} {{ author.last_name }}</li>
+      </ul>
+
+      <div class="row">
+        <div class="col-xs-3">
+          <input ng-model="newAuthor.first_name" type="text" class="form-control" placeholder="First name">
         </div>
+        <div class="col-xs-3">
+          <input ng-model="newAuthor.last_name" type="text" class="form-control" placeholder="Last name">
+        </div>
+        <div class="col-xs-4">
+          <input ng-model="newAuthor.description" type="text" class="form-control" placeholder="Description">
+        </div>
+        <div class="col-xs-2">
+          <button ng-click="addAuthor()" class="btn btn-default" type="submit">Save</button>
+        </div>
+      </div>
+
+      <h1>Books</h1>
+      <ul>
+        <li ng-repeat="book in books">{{ book }}</li>
+      </ul>
     </div>
+  </div>
 </div>
 
 </body>
