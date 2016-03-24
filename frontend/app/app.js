@@ -5,15 +5,26 @@
 
 var app = angular.module("myRestApp", []);
 
-app.controller("MyRestAppCtrl", function($scope) {
-  $scope.books = ["Book 1", "Book 2"];
-  $scope.authors = ["Author 1", "Author 2", "Author 3", "Author 4"];
-});
+app.controller("MyRestAppCtrl", ['$scope', 'myRestAppApiService', function ($scope, myRestAppApiService) {
+
+  $scope.books = ["Loading..."];
+  $scope.authors = ["Loading"];
+
+  myRestAppApiService.getBooks()
+    .success(function (response, status) {
+      $scope.books = [].concat(response);
+    });
+
+  myRestAppApiService.getAuthors()
+    .success(function (response, status) {
+      $scope.authors = [].concat(response);
+    });
+}]);
 
 app.service('myRestAppApiService', ['$http', function ($http) {
   var apiUrlMapper = {
-    getBooks: "/api/v1/books/",
-    getAuthors: "/api/v1/authors/"
+    getBooks: "http://localhost:8000/books/",
+    getAuthors: "http://localhost:8000/authors/"
   };
 
   var books = [];
