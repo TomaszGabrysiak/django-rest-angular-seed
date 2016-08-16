@@ -5,10 +5,22 @@
 
 var app = angular.module("myRestApp", []);
 
+app.config(function($httpProvider) {
+
+
+  $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+  $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+  //$httpProvider.defaults.withCredentials = true;
+
+});
+
 app.controller("MyRestAppCtrl", ['$scope', 'myRestAppApiService', function ($scope, myRestAppApiService) {
 
   $scope.books = ["Loading..."];
-  $scope.authors = ["Loading"];
+  $scope.authors = [{"first_name": "Loading..."}];
+  
+
+  myRestAppApiService.getCSRF();
 
   $scope.newAuthor = {
     first_name: '',
@@ -62,7 +74,7 @@ app.controller("MyRestAppCtrl", ['$scope', 'myRestAppApiService', function ($sco
 
 app.service('myRestAppApiService', ['$http', function ($http) {
   var apiUrlMapper = {
-    login: "http://localhost:8000/api-auth/login/",
+    login: "http://localhost:8000/api-token-auth/",
     logout: "http://localhost:8000/api-auth/logout/",
     getBooks: "http://localhost:8000/api/books/",
     getAuthors: "http://localhost:8000/api/authors/",
@@ -87,6 +99,9 @@ app.service('myRestAppApiService', ['$http', function ($http) {
     },
     addAuthor: function (author) {
       return $http.post(apiUrlMapper.addAuthor, author);
+    },
+    getCSRF: function () {
+      return $http.get(apiUrlMapper.login);
     }
   };
 }]);

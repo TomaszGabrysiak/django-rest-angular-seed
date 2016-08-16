@@ -6,9 +6,10 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "angular": "1.4.5",
+    "angular": "^1.5.8",
     "bootstrap": "3.3.6",
     "angular-ui-router": "0.2.18",
-    "font-awesome": "4.5.0"
+    "font-awesome": "4.5.0",
+    "angular-cookies": "^1.5.8"
   }
 }
